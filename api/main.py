@@ -4,6 +4,7 @@ Endpoints
 ---------
 * ``GET  /``        — service banner.
 * ``GET  /health``  — liveness + whether the model loaded (used by Render).
+* ``GET  /metrics`` — the model's version manifest and evaluation metrics.
 * ``POST /predict`` — one estimate, in maloti (LSL).
 
 The model is loaded once at startup. If it is missing the service still starts
@@ -106,6 +107,34 @@ def health() -> dict[str, object]:
         "status": "ok",
         "model_loaded": app.state.bundle is not None,
         "error": app.state.load_error,
+    }
+
+
+@app.get("/metrics")
+def metrics() -> dict[str, object]:
+    """The model's version manifest and evaluation metrics (Phase 11 dashboard)."""
+    if app.state.bundle is None:
+        raise HTTPException(status_code=503, detail="Model is not loaded; check /health.")
+    version = app.state.bundle.version
+    if not version:
+        raise HTTPException(status_code=503, detail="model_version.json is missing next to the model.")
+    return {
+        "best_model": version.get("best_model"),
+        "target": version.get("target"),
+        "trained_at": version.get("trained_at"),
+        "sklearn_version": version.get("sklearn_version"),
+        "python_version": version.get("python_version"),
+        "package_version": version.get("package_version"),
+        "dataset_rows": version.get("dataset_rows"),
+        "dataset_fingerprint": version.get("dataset_fingerprint"),
+        "features": version.get("features", []),
+        "split": {
+            "train": version.get("n_train"),
+            "validation": version.get("n_val"),
+            "test": version.get("n_test"),
+        },
+        "validation_metrics": version.get("validation_metrics", []),
+        "test_metrics": version.get("test_metrics", []),
     }
 
 

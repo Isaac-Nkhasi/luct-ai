@@ -76,3 +76,28 @@ def test_openapi_documents_predict(client):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert "/predict" in response.json()["paths"]
+
+
+def test_metrics_returns_the_model_manifest(client):
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["best_model"] == "random_forest"
+    assert body["target"] == "price_lsl"
+    assert body["split"]["test"] > 0
+    assert {m["model"] for m in body["test_metrics"]} == {
+        "median_baseline",
+        "linear_regression",
+        "random_forest",
+    }
+    for metric in body["test_metrics"]:
+        assert metric["mae"] > 0
+        assert metric["rmse"] > 0
+
+
+def test_metrics_matches_the_version_file(client):
+    version = serving.load_bundle().version
+    body = client.get("/metrics").json()
+    assert body["dataset_fingerprint"] == version["dataset_fingerprint"]
+    assert body["dataset_rows"] == version["dataset_rows"]
+    assert body["test_metrics"] == version["test_metrics"]

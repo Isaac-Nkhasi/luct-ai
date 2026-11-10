@@ -1,4 +1,4 @@
-# LUCT Market AI — Phase 8 (dataset) + Phase 9 (models) + Phase 10 (serving)
+# LUCT Market AI — Phase 8 (dataset) + Phase 9 (models) + Phase 10 (serving) + Phase 11 (metrics)
 
 Code for building the used-laptop asking-price dataset, training/evaluating the
 price estimator, and serving it as an HTTP API for the LUCT Market marketplace.
@@ -13,7 +13,7 @@ price estimator, and serving it as an HTTP API for the LUCT Market marketplace.
 ```
 luct-ai/
 ├── api/
-│   ├── main.py                      # Phase 10 FastAPI service (/health, /predict)
+│   ├── main.py                      # Phase 10 FastAPI service (/health, /metrics, /predict)
 │   └── requirements.txt             # pinned serving dependencies
 ├── data/
 │   ├── laptop_prices_template.csv   # header-only template for collection
@@ -97,8 +97,15 @@ Run it locally:
 | --- | --- | --- |
 | `GET` | `/` | Banner + link to the docs |
 | `GET` | `/health` | `{status, model_loaded, error}` — used as the Render health check |
+| `GET` | `/metrics` | The model version manifest + evaluation metrics, read from `models/model_version.json` |
 | `POST` | `/predict` | Body = laptop specs, returns `{"predicted_price_lsl": <number>}` |
 | `GET` | `/docs` | Auto-generated OpenAPI UI (also `/openapi.json`) |
+
+`/metrics` is what the Phase 11 AI model dashboard in `security-admin/` charts.
+It returns the best model name, target, training timestamp, library versions,
+dataset rows and fingerprint, split sizes, and the per-model validation/test
+MAE, RMSE and R². It answers `503` when no model or manifest is loaded, so the
+dashboard can show a clear message instead of empty charts.
 
 Example request:
 
@@ -150,6 +157,13 @@ Render deploy.
   exposes `/health` + `/predict`, reusing the training-time feature pipeline.
 - Input validation via Pydantic (impossible RAM/storage/ages rejected with `422`).
 - Docker image + `render.yaml` Blueprint for a free-tier Render deploy.
+
+**Phase 11 — model metrics endpoint**
+- `GET /metrics` publishes the model manifest (best model, target, split sizes,
+  library versions, dataset fingerprint) and the per-model validation/test
+  MAE, RMSE and R² straight from `models/model_version.json`.
+- Covered by `tests/test_api.py`; the figures are read, never re-typed, so the
+  security-admin AI dashboard can never drift from the trained model.
 
 ## Honest reporting rules
 
