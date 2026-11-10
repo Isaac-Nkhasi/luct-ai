@@ -13,7 +13,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 # Dependencies first, so this layer is reused when only the source changes.
-COPY requirements.txt api/requirements.txt ./
+# Two separate COPYs: a multi-source COPY with a directory destination flattens
+# both files to their basename, which would clobber one of them.
+COPY requirements.txt ./
+COPY api/requirements.txt ./api/
 RUN pip install --no-cache-dir -r requirements.txt -r api/requirements.txt
 
 # Editable install keeps src/ in place, so luct_ai.serving resolves <repo>/models.
