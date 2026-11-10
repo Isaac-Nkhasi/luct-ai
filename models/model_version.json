@@ -1,0 +1,73 @@
+{
+  "trained_at": "2026-11-10T19:44:25.242554+00:00",
+  "best_model": "random_forest",
+  "target": "price_lsl",
+  "features": [
+    "ram_gb",
+    "storage_gb",
+    "age_years",
+    "battery_health",
+    "brand",
+    "processor",
+    "storage_type",
+    "condition"
+  ],
+  "include_model": false,
+  "n_train": 3323,
+  "n_val": 942,
+  "n_test": 1195,
+  "random_state": 42,
+  "sklearn_version": "1.9.1",
+  "python_version": "3.14.7",
+  "platform": "Windows-11-10.0.22000-SP0",
+  "validation_metrics": [
+    {
+      "model": "median_baseline",
+      "n": 942,
+      "mae": 8609.89062660208,
+      "rmse": 12336.379583371236,
+      "r2": -0.17120393501743947
+    },
+    {
+      "model": "linear_regression",
+      "n": 942,
+      "mae": 5728.100929825666,
+      "rmse": 7985.828861616552,
+      "r2": 0.5092084544701354
+    },
+    {
+      "model": "random_forest",
+      "n": 942,
+      "mae": 5621.286056759681,
+      "rmse": 7853.835482902239,
+      "r2": 0.5252984230213931
+    }
+  ],
+  "test_metrics": [
+    {
+      "model": "median_baseline",
+      "n": 1195,
+      "mae": 7102.350427359093,
+      "rmse": 10201.553968119817,
+      "r2": -0.021940276675230574
+    },
+    {
+      "model": "linear_regression",
+      "n": 1195,
+      "mae": 4369.779558300631,
+      "rmse": 6281.287683929854,
+      "r2": 0.6125726979023822
+    },
+    {
+      "model": "random_forest",
+      "n": 1195,
+      "mae": 4241.160996800745,
+      "rmse": 6252.453958638846,
+      "r2": 0.6161214392601804
+    }
+  ],
+  "model_file": "laptop_price_model.joblib",
+  "package_version": "0.1.0",
+  "dataset_fingerprint": "9d4bf15a93db39555bc5a10d015ae19cc08483e8c97b003a81209a192ad56b06",
+  "dataset_rows": 5678
+}

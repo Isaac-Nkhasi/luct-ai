@@ -1,0 +1,14 @@
+# Keep the Docker build context small; only code + the model ship in the image.
+.venv/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.gitignore
+.specstory/
+data/
+docs/
+kit/
+notebooks/
+reports/
+tests/

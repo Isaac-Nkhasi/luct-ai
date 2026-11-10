@@ -1,0 +1,17 @@
+# Render Blueprint for the Phase 10 price-estimation service.
+# Spec: https://render.com/docs/blueprint-spec
+#
+# Create it on Render with: New + -> Blueprint -> pick this repository.
+services:
+  - type: web
+    name: luct-price-estimator
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeploy: false
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: "*"

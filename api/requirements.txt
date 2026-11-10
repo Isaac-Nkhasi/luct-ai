@@ -1,0 +1,13 @@
+# Service-only dependencies (Phase 10). The dataset/model dependencies live in
+# ../requirements.txt — install both.
+#
+# Core versions are pinned to the ones the model bundle was saved with so the
+# joblib pickle loads predictably (a scikit-learn version mismatch is the most
+# common cause of a broken deploy).
+numpy==2.5.4
+pandas==3.1.1
+scikit-learn==1.9.1
+joblib==1.6.0
+
+fastapi>=0.115
+uvicorn[standard]>=0.30

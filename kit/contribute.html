@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUCT Market — laptop data contribution</title>
+<style>
+  :root { --ink:#1c2430; --muted:#5b6b7c; --line:#d7dee6; --bg:#f5f7fa; --accent:#1f6feb; --warn:#8a4b00; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 20px 64px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 18px; }
+  .notice { background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+            border-radius:8px; padding:14px 16px; margin-bottom:20px; }
+  .notice p { margin: 6px 0; }
+  .notice strong { color: var(--ink); }
+  fieldset { border:1px solid var(--line); border-radius:10px; background:#fff;
+             padding:16px; margin:0 0 18px; }
+  legend { padding:0 6px; font-weight:600; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px 16px; }
+  label { display:block; font-size:.82rem; font-weight:600; color:var(--muted); margin-bottom:4px; }
+  input, select, textarea { width:100%; padding:8px 10px; border:1px solid var(--line);
+                            border-radius:6px; font:inherit; background:#fff; color:var(--ink); }
+  input:focus, select:focus, textarea:focus { outline:2px solid var(--accent); outline-offset:-1px; }
+  .wide { grid-column: 1 / -1; }
+  .hint { font-weight:400; color:var(--muted); }
+  .actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:22px; }
+  button { font:inherit; font-weight:600; padding:9px 16px; border-radius:8px; cursor:pointer;
+           border:1px solid var(--line); background:#fff; color:var(--ink); }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  #error { color:#b00020; font-size:.88rem; min-height:1.2em; }
+  table { width:100%; border-collapse:collapse; background:#fff; font-size:.85rem; }
+  th, td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.03em; }
+  .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:10px; }
+  .empty { color:var(--muted); padding:14px; }
+  .del { border:0; background:none; color:#b00020; cursor:pointer; font-weight:700; padding:0 4px; }
+  .consent { display:flex; gap:8px; align-items:flex-start; margin-top:12px; }
+  .consent input { width:auto; margin-top:3px; }
+  .consent label { font-weight:400; color:var(--ink); }
+  code { background:#eef2f7; padding:1px 5px; border-radius:4px; font-size:.85em; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Contribute a laptop record</h1>
+  <p class="lead">Help build a price estimator for second-hand laptops on the LUCT Market.
+     Fill one record per laptop you know about. Nothing is uploaded automatically — you
+     download a CSV and hand it to the project team.</p>
+
+  <section class="notice">
+    <p><strong>Why we ask.</strong> We are building a tool that estimates a fair asking
+       price for second-hand laptops. Your contributions make that estimate realistic for
+       Lesotho instead of relying on foreign data.</p>
+    <p><strong>Voluntary and anonymous.</strong> This is entirely optional and you can skip
+       any field. We collect <strong>laptop information only</strong> — never your name,
+       email, phone number, student number or any other personal detail. Data is used only
+       to estimate prices and is reported in aggregate.</p>
+  </section>
+
+  <form id="entry-form" novalidate>
+    <fieldset>
+      <legend>Laptop</legend>
+      <div class="grid">
+        <div>
+          <label for="brand">Brand *</label>
+          <select id="brand" required>
+            <option value="">— select —</option>
+            <option>Acer</option><option>Apple</option><option>Asus</option>
+            <option>Dell</option><option>Fujitsu</option><option>HP</option>
+            <option>Lenovo</option><option>Microsoft</option><option>MSI</option>
+            <option>Samsung</option><option>Toshiba</option><option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="model">Model *</label>
+          <input id="model" type="text" placeholder="e.g. ThinkPad T480">
+        </div>
+        <div>
+          <label for="processor">Processor *</label>
+          <select id="processor" required>
+            <option value="">— select —</option>
+            <option>Intel Core i3</option><option>Intel Core i5</option>
+            <option>Intel Core i7</option><option>Intel Core i9</option>
+            <option>Intel Celeron</option><option>Intel Pentium</option>
+            <option>AMD Ryzen 3</option><option>AMD Ryzen 5</option>
+            <option>AMD Ryzen 7</option><option>AMD Ryzen 9</option>
+            <option>AMD Athlon</option><option>Apple M1</option>
+            <option>Apple M2</option><option>Apple M3</option><option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="ram_gb">RAM (GB) *</label>
+          <input id="ram_gb" type="number" min="1" max="256" step="1" placeholder="8">
+        </div>
+        <div>
+          <label for="storage_gb">Storage (GB) *</label>
+          <input id="storage_gb" type="number" min="8" max="20000" step="1" placeholder="256">
+        </div>
+        <div>
+          <label for="storage_type">Storage type *</label>
+          <select id="storage_type" required>
+            <option value="">— select —</option>
+            <option>SSD</option><option>HDD</option><option>eMMC</option>
+            <option>SSD+HDD</option><option>Unknown</option>
+          </select>
+        </div>
+        <div>
+          <label for="age_years">Age (years) *</label>
+          <input id="age_years" type="number" min="0" max="25" step="1" placeholder="5">
+        </div>
+        <div>
+          <label for="condition">Condition *</label>
+          <select id="condition" required>
+            <option value="">— select —</option>
+            <option>New</option><option>Like New</option><option>Good</option>
+            <option>Fair</option><option>Poor</option>
+          </select>
+        </div>
+        <div>
+          <label for="battery_health">Battery health % <span class="hint">(optional)</span></label>
+          <input id="battery_health" type="number" min="0" max="100" step="1" placeholder="80">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Price</legend>
+      <div class="grid">
+        <div>
+          <label for="price">Price *</label>
+          <input id="price" type="number" min="1" step="1" placeholder="4500">
+        </div>
+        <div>
+          <label for="currency">Currency *</label>
+          <select id="currency" required>
+            <option>LSL</option><option>ZAR</option><option>USD</option>
+            <option>EUR</option><option>GBP</option>
+          </select>
+        </div>
+        <div>
+          <label for="price_type">Price type *</label>
+          <select id="price_type" required>
+            <option value="asking">asking — the price being asked</option>
+            <option value="completed">completed — the price actually paid</option>
+          </select>
+        </div>
+        <div>
+          <label for="collection_date">Date seen *</label>
+          <input id="collection_date" type="date">
+        </div>
+        <div class="wide">
+          <label for="notes">Notes <span class="hint">(optional)</span></label>
+          <input id="notes" type="text" placeholder="e.g. no charger, cracked bezel">
+        </div>
+      </div>
+      <p class="hint" style="margin:10px 0 0">Enter the price exactly as stated — do not
+         convert it yourself. The pipeline converts to LSL and records the rate it used.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Source</legend>
+      <div class="grid">
+        <div class="wide">
+          <label for="source">Where did you see it? *</label>
+          <input id="source" type="text" value="Student contribution">
+        </div>
+      </div>
+      <div class="consent">
+        <input id="consent" type="checkbox">
+        <label for="consent">I understand this is voluntary and that no personal details are
+          recorded. I agree to share this laptop's information for the price-estimation tool.</label>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="primary">Add record</button>
+      <button type="button" id="download">Download CSV</button>
+      <button type="button" id="clear">Clear all</button>
+      <span id="error" role="alert"></span>
+    </div>
+  </form>
+
+  <h2 style="font-size:1.05rem">Records entered (<span id="count">0</span>)</h2>
+  <div class="table-wrap">
+    <table id="entries-table">
+      <thead>
+        <tr>
+          <th>Brand</th><th>Model</th><th>Processor</th><th>RAM</th><th>Storage</th>
+          <th>Type</th><th>Age</th><th>Condition</th><th>Battery</th><th>Price</th>
+          <th>Currency</th><th>Type</th><th>Date</th><th>Source</th><th>Notes</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="entries-body"></tbody>
+    </table>
+    <div class="empty" id="empty-msg">No records yet. Fill the form above and press “Add record”.</div>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var HEADER = ["record_id", "brand", "model", "processor", "ram_gb", "storage_gb",
+                "storage_type", "age_years", "condition", "battery_health", "price",
+                "currency", "source", "collection_date", "price_type", "notes"];
+  var STORE_KEY = "luct_contrib_entries_v1";
+
+  var FIELD_IDS = ["brand", "model", "processor", "ram_gb", "storage_gb", "storage_type",
+                   "age_years", "condition", "battery_health", "price", "currency",
+                   "price_type", "collection_date", "source", "notes"];
+
+  var entries = load();
+  var errorEl = document.getElementById("error");
+  var bodyEl = document.getElementById("entries-body");
+  var countEl = document.getElementById("count");
+  var emptyEl = document.getElementById("empty-msg");
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+    catch (e) { return []; }
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(entries)); } catch (e) {}
+  }
+  function val(id) { return document.getElementById(id).value.trim(); }
+
+  function defaults() {
+    var today = new Date();
+    var iso = today.getFullYear() + "-" +
+              String(today.getMonth() + 1).padStart(2, "0") + "-" +
+              String(today.getDate()).padStart(2, "0");
+    document.getElementById("collection_date").value = iso;
+  }
+
+  function render() {
+    bodyEl.innerHTML = "";
+    entries.forEach(function (e, i) {
+      var tr = document.createElement("tr");
+      [e.brand, e.model, e.processor, e.ram_gb, e.storage_gb, e.storage_type,
+       e.age_years, e.condition, e.battery_health || "—", e.price, e.currency,
+       e.price_type, e.collection_date, e.source, e.notes || "—"
+      ].forEach(function (v) {
+        var td = document.createElement("td");
+        td.textContent = v;
+        tr.appendChild(td);
+      });
+      var td = document.createElement("td");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "del";
+      btn.textContent = "×";
+      btn.title = "Remove this record";
+      btn.addEventListener("click", function () {
+        entries.splice(i, 1); save(); render();
+      });
+      td.appendChild(btn);
+      tr.appendChild(td);
+      bodyEl.appendChild(tr);
+    });
+    countEl.textContent = String(entries.length);
+    emptyEl.style.display = entries.length ? "none" : "block";
+  }
+
+  function csvEscape(value) {
+    var s = (value === undefined || value === null) ? "" : String(value);
+    if (/[",\n\r]/.test(s)) { return '"' + s.replace(/"/g, '""') + '"'; }
+    return s;
+  }
+
+  document.getElementById("entry-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    errorEl.textContent = "";
+
+    var missing = [];
+    ["brand", "model", "processor", "ram_gb", "storage_gb", "storage_type",
+     "age_years", "condition", "price", "currency", "price_type",
+     "collection_date", "source"].forEach(function (id) {
+      if (!val(id)) { missing.push(id.replace(/_/g, " ")); }
+    });
+    if (missing.length) {
+      errorEl.textContent = "Please fill: " + missing.join(", ") + ".";
+      return;
+    }
+    var price = Number(val("price"));
+    if (!(price > 0)) { errorEl.textContent = "Price must be a number greater than zero."; return; }
+    var ram = Number(val("ram_gb"));
+    if (!(ram >= 1 && ram <= 256)) { errorEl.textContent = "RAM must be between 1 and 256 GB."; return; }
+    var storage = Number(val("storage_gb"));
+    if (!(storage >= 8 && storage <= 20000)) { errorEl.textContent = "Storage must be between 8 and 20000 GB."; return; }
+    var age = Number(val("age_years"));
+    if (!(age >= 0 && age <= 25)) { errorEl.textContent = "Age must be between 0 and 25 years."; return; }
+    var battery = val("battery_health");
+    if (battery !== "" && !(Number(battery) >= 0 && Number(battery) <= 100)) {
+      errorEl.textContent = "Battery health must be between 0 and 100, or left blank."; return;
+    }
+    if (!document.getElementById("consent").checked) {
+      errorEl.textContent = "Please tick the consent box before adding the record.";
+      return;
+    }
+
+    entries.push({
+      record_id: "",
+      brand: val("brand"), model: val("model"), processor: val("processor"),
+      ram_gb: val("ram_gb"), storage_gb: val("storage_gb"),
+      storage_type: val("storage_type"), age_years: val("age_years"),
+      condition: val("condition"), battery_health: battery,
+      price: val("price"), currency: val("currency"),
+      price_type: val("price_type"), collection_date: val("collection_date"),
+      source: val("source"), notes: val("notes")
+    });
+    save();
+    render();
+
+    // Reset the per-laptop fields, keep the source/date/consent for fast entry.
+    ["model", "ram_gb", "storage_gb", "age_years", "battery_health", "price", "notes"]
+      .forEach(function (id) { document.getElementById(id).value = ""; });
+    ["brand", "processor", "storage_type", "condition"].forEach(function (id) {
+      document.getElementById(id).value = "";
+    });
+    document.getElementById("model").focus();
+  });
+
+  document.getElementById("download").addEventListener("click", function () {
+    if (!entries.length) { errorEl.textContent = "No records to download yet."; return; }
+    errorEl.textContent = "";
+    var lines = [HEADER.map(csvEscape).join(",")];
+    entries.forEach(function (e) {
+      lines.push(HEADER.map(function (k) { return csvEscape(e[k]); }).join(","));
+    });
+    var blob = new Blob([lines.join("\r\n") + "\r\n"], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var today = new Date();
+    var stamp = today.getFullYear() + "-" +
+                String(today.getMonth() + 1).padStart(2, "0") + "-" +
+                String(today.getDate()).padStart(2, "0");
+    a.href = url;
+    a.download = "luct-laptop-contribution-" + stamp + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById("clear").addEventListener("click", function () {
+    if (!entries.length) { return; }
+    if (window.confirm("Delete all " + entries.length + " record(s)? This cannot be undone.")) {
+      entries = []; save(); render(); errorEl.textContent = "";
+    }
+  });
+
+  defaults();
+  render();
+})();
+</script>
+</body>
+</html>

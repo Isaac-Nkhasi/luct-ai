@@ -1,0 +1,290 @@
+{
+  "records_after_cleaning": 5678,
+  "duplicates_removed": 3157,
+  "missingness_before": [
+    {
+      "column": "record_id",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "brand",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "model",
+      "missing": 8835,
+      "present": 0,
+      "missing_pct": 100.0
+    },
+    {
+      "column": "processor",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "ram_gb",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "storage_gb",
+      "missing": 2,
+      "present": 8833,
+      "missing_pct": 0.02
+    },
+    {
+      "column": "storage_type",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "age_years",
+      "missing": 8835,
+      "present": 0,
+      "missing_pct": 100.0
+    },
+    {
+      "column": "condition",
+      "missing": 6304,
+      "present": 2531,
+      "missing_pct": 71.35
+    },
+    {
+      "column": "battery_health",
+      "missing": 8835,
+      "present": 0,
+      "missing_pct": 100.0
+    },
+    {
+      "column": "price",
+      "missing": 497,
+      "present": 8338,
+      "missing_pct": 5.63
+    },
+    {
+      "column": "currency",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "source",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "collection_date",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "price_type",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "notes",
+      "missing": 0,
+      "present": 8835,
+      "missing_pct": 0.0
+    }
+  ],
+  "missingness_after": [
+    {
+      "column": "record_id",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "brand",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "model",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "processor",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "ram_gb",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "storage_gb",
+      "missing": 2,
+      "present": 5676,
+      "missing_pct": 0.04
+    },
+    {
+      "column": "storage_type",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "age_years",
+      "missing": 5678,
+      "present": 0,
+      "missing_pct": 100.0
+    },
+    {
+      "column": "condition",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "battery_health",
+      "missing": 5678,
+      "present": 0,
+      "missing_pct": 100.0
+    },
+    {
+      "column": "price",
+      "missing": 218,
+      "present": 5460,
+      "missing_pct": 3.84
+    },
+    {
+      "column": "currency",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "source",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "collection_date",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "price_type",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "notes",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "price_lsl",
+      "missing": 218,
+      "present": 5460,
+      "missing_pct": 3.84
+    },
+    {
+      "column": "fx_rate_used",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "fx_rate_date",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "fx_rate_source",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "quality_flags",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    },
+    {
+      "column": "price_band",
+      "missing": 218,
+      "present": 5460,
+      "missing_pct": 3.84
+    },
+    {
+      "column": "is_duplicate",
+      "missing": 0,
+      "present": 5678,
+      "missing_pct": 0.0
+    }
+  ],
+  "quality_flag_counts": [
+    {
+      "flag": "missing_condition",
+      "records": 3934
+    },
+    {
+      "flag": "condition_unmapped",
+      "records": 3934
+    },
+    {
+      "flag": "price_outlier",
+      "records": 240
+    },
+    {
+      "flag": "missing_price",
+      "records": 218
+    },
+    {
+      "flag": "missing_storage_gb",
+      "records": 2
+    }
+  ],
+  "currency_summary": [
+    {
+      "currency": "DZD",
+      "records": 5678,
+      "converted": 5460
+    }
+  ],
+  "split_summary": [
+    {
+      "split": "test",
+      "records": 1236
+    },
+    {
+      "split": "train",
+      "records": 3455
+    },
+    {
+      "split": "val",
+      "records": 987
+    }
+  ],
+  "notes": [
+    "input records: 8835",
+    "duplicates removed: 3157",
+    "usable records after cleaning: 5678"
+  ]
+}

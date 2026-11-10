@@ -1,0 +1,23 @@
+# Raw and processed data are kept out of version control. Only templates,
+# rate tables and code are committed.
+data/raw/
+data/processed/
+data/contributions/
+
+# Environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Generated artefacts (regenerate with the pipeline)
+models/*.joblib
+models/*.json
+reports/figures/*.png
+
+# ...except the shipped model bundle. The Phase 10 service loads it at startup
+# and Render deploys straight from git, so these two files are committed.
+!models/laptop_price_model.joblib
+!models/model_version.json

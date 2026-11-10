@@ -1,0 +1,126 @@
+{
+  "trained_at": "2026-11-10T19:44:25.242554+00:00",
+  "best_model": "random_forest",
+  "target": "price_lsl",
+  "features": [
+    "ram_gb",
+    "storage_gb",
+    "age_years",
+    "battery_health",
+    "brand",
+    "processor",
+    "storage_type",
+    "condition"
+  ],
+  "include_model": false,
+  "n_train": 3323,
+  "n_val": 942,
+  "n_test": 1195,
+  "random_state": 42,
+  "sklearn_version": "1.9.1",
+  "python_version": "3.14.7",
+  "platform": "Windows-11-10.0.22000-SP0",
+  "validation_metrics": [
+    {
+      "model": "median_baseline",
+      "n": 942,
+      "mae": 8609.89062660208,
+      "rmse": 12336.379583371236,
+      "r2": -0.17120393501743947
+    },
+    {
+      "model": "linear_regression",
+      "n": 942,
+      "mae": 5728.100929825666,
+      "rmse": 7985.828861616552,
+      "r2": 0.5092084544701354
+    },
+    {
+      "model": "random_forest",
+      "n": 942,
+      "mae": 5621.286056759681,
+      "rmse": 7853.835482902239,
+      "r2": 0.5252984230213931
+    }
+  ],
+  "test_metrics": [
+    {
+      "model": "median_baseline",
+      "n": 1195,
+      "mae": 7102.350427359093,
+      "rmse": 10201.553968119817,
+      "r2": -0.021940276675230574
+    },
+    {
+      "model": "linear_regression",
+      "n": 1195,
+      "mae": 4369.779558300631,
+      "rmse": 6281.287683929854,
+      "r2": 0.6125726979023822
+    },
+    {
+      "model": "random_forest",
+      "n": 1195,
+      "mae": 4241.160996800745,
+      "rmse": 6252.453958638846,
+      "r2": 0.6161214392601804
+    }
+  ],
+  "model_file": "C:\\Users\\dalnk\\Downloads\\LUCT-Market-Phase-7-Sepolia-Integration\\luct-ai\\models\\laptop_price_model.joblib",
+  "version_file": "C:\\Users\\dalnk\\Downloads\\LUCT-Market-Phase-7-Sepolia-Integration\\luct-ai\\models\\model_version.json",
+  "test_error_by_band": [
+    {
+      "band": "(13167.347, 19251.57]",
+      "n": 278,
+      "mae": 4700.058810514642,
+      "rmse": 6043.826985767316
+    },
+    {
+      "band": "(134.518, 9202.008]",
+      "n": 364,
+      "mae": 2393.4758786926463,
+      "rmse": 3461.3360965450183
+    },
+    {
+      "band": "(19251.57, 62961.11]",
+      "n": 281,
+      "mae": 7263.144267096138,
+      "rmse": 9717.875288365483
+    },
+    {
+      "band": "(9202.008, 13167.347]",
+      "n": 272,
+      "mae": 3122.8025108664806,
+      "rmse": 4563.182360209803
+    }
+  ],
+  "learning_curve": {
+    "train_sizes": [
+      682,
+      1364,
+      2047,
+      2729,
+      3412
+    ],
+    "train_mae": [
+      739.820442085967,
+      1165.1385235043758,
+      1779.5540479136478,
+      2582.039460619613,
+      4233.494976056615
+    ],
+    "val_mae": [
+      10026.154950803237,
+      8273.483211654637,
+      6854.602246896943,
+      5739.086686569232,
+      5210.660825905751
+    ]
+  },
+  "source_breakdown": [
+    {
+      "source": "Public dataset: bitsnaps/laptops_specs (Hugging Face, Apache-2.0)",
+      "records": 5678
+    }
+  ]
+}
